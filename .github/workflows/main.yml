@@ -35,5 +35,5 @@ jobs:
       - id: 'gcloud'
         name: 'gcloud'
         run: |-
-          cat /home/runner/work/hello-github-actions/hello-github-actions/gha-creds*
+          cat /home/runner/work/gcp-test/gcp-test/gha-creds-*
           gcloud compute instances list
