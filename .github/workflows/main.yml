@@ -10,7 +10,7 @@ jobs:
     name: Hello world action
     runs-on: ubuntu-latest
     permissions:
-      # contents: 'read'
+      contents: 'read'
       id-token: 'write'
     steps:
     # actions/checkout MUST come before auth
