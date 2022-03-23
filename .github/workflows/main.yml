@@ -2,6 +2,7 @@ name: A workflow for my Hello World file
 on:
   push:
   workflow_dispatch:
+  repository_dispatch:
 
 jobs:
   build:
