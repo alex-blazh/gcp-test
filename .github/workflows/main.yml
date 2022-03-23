@@ -37,7 +37,10 @@ jobs:
       - id: 'gcloud'
         name: 'gcloud'
         run: |-
-          cat /home/runner/work/gcp-test/gcp-test/gha-creds-*
+          gcloud compute instances
+
+      - id: 'secrets'
+        name: 'secrets'
+        run: |-
           echo $TEST_SECRET > 1.txt
           cat 1.txt
-          gcloud compute instances list
