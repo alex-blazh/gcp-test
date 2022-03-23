@@ -1,0 +1,39 @@
+name: A workflow for my Hello World file
+on: push
+jobs:
+  build:
+    name: Hello world action
+    runs-on: ubuntu-latest
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+    steps:
+    # actions/checkout MUST come before auth
+      - uses: 'actions/checkout@v3'
+
+      - id: 'auth'
+        name: 'Authenticate to Google Cloud'
+        uses: 'google-github-actions/auth@v0.6.0'
+        with:
+          token_format: 'access_token'
+          # token_format: 'id_token'
+          workload_identity_provider: 'projects/732332336349/locations/global/workloadIdentityPools/my-pool/providers/my-provider'
+          service_account: 'github-service-account@awesome-tts-326114.iam.gserviceaccount.com'
+          # project_id: 'awesome-tts-326114'
+      # - name: Setup tmate session
+      #   if: ${{ failure() }}
+      #   uses: mxschmitt/action-tmate@v3
+      # - uses: ./action-a
+      #   with:
+      #     MY_NAME: "Mona"
+
+      # Install gcloud, `setup-gcloud` automatically picks up authentication from `auth`.
+      - name: 'Set up Cloud SDK'
+        uses: 'google-github-actions/setup-gcloud@v0'
+
+      # Now you can run gcloud commands authenticated as the impersonated service account.
+      - id: 'gcloud'
+        name: 'gcloud'
+        run: |-
+          cat /home/runner/work/hello-github-actions/hello-github-actions/gha-creds*
+          gcloud compute instances list
