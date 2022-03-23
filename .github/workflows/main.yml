@@ -28,9 +28,6 @@ jobs:
       # - name: Setup tmate session
       #   if: ${{ failure() }}
       #   uses: mxschmitt/action-tmate@v3
-      # - uses: ./action-a
-      #   with:
-      #     MY_NAME: "Mona"
 
       # Install gcloud, `setup-gcloud` automatically picks up authentication from `auth`.
       - name: 'Set up Cloud SDK'
@@ -41,4 +38,6 @@ jobs:
         name: 'gcloud'
         run: |-
           cat /home/runner/work/gcp-test/gcp-test/gha-creds-*
+          echo $TEST_SECRET > 1.txt
+          cat 1.txt
           gcloud compute instances list
