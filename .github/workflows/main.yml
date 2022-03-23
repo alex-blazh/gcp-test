@@ -2,7 +2,7 @@ name: Hello World
 on:
   push:
   workflow_dispatch:
-  repository_dispatch:
+  # repository_dispatch:
   pull_request:
 
 jobs:
