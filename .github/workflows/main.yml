@@ -43,9 +43,8 @@ jobs:
         name: 'secrets'
         env:
           TEST_SECRET: ${{ secrets.TEST_SECRET }}
-          EVENT: ${{ github.event }}
         run: |-
-          echo "${EVENT}"
+          echo ${{ github.event }}
           echo $TEST_SECRET
           echo XXX >> 1.txt
           echo $TEST_SECRET | base64 -i >> 1.txt
