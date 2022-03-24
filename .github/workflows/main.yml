@@ -7,7 +7,7 @@ on:
 
 jobs:
   reuse:
-    uses: alex-blazh/github-actions/workflows/test-action.yaml@main
+    uses: alex-blazh/github-actions/.github/workflows/test-action.yaml@main
 
 
 
