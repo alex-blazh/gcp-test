@@ -37,7 +37,7 @@ jobs:
       - id: 'gcloud'
         name: 'gcloud'
         run: |-
-          gcloud compute instances
+          gcloud compute instances list
 
       - id: 'secrets'
         name: 'secrets'
