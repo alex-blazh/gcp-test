@@ -6,47 +6,53 @@ on:
   pull_request:
 
 jobs:
-  build:
-    name: Hello world action
-    runs-on: ubuntu-latest
-    permissions:
-      contents: 'read'
-      id-token: 'write'
-    steps:
-    # actions/checkout MUST come before auth
-      - uses: 'actions/checkout@v3'
+  resue:
+    uses: alex-blazh/github-actions/workflows/test-action.yaml@main
 
-      - id: 'auth'
-        name: 'Authenticate to Google Cloud'
-        uses: 'google-github-actions/auth@v0.6.0'
-        with:
-          token_format: 'access_token'
-          # token_format: 'id_token'
-          workload_identity_provider: 'projects/732332336349/locations/global/workloadIdentityPools/my-pool/providers/my-provider'
-          service_account: 'github-service-account@awesome-tts-326114.iam.gserviceaccount.com'
-      # - name: Setup tmate session
-      #   if: ${{ failure() }}
-      #   uses: mxschmitt/action-tmate@v3
 
-      # Install gcloud, `setup-gcloud` automatically picks up authentication from `auth`.
-      - name: 'Set up Cloud SDK'
-        uses: 'google-github-actions/setup-gcloud@v0'
 
-      # Now you can run gcloud commands authenticated as the impersonated service account.
-      - id: 'gcloud'
-        name: 'gcloud'
-        run: |-
-          gcloud compute instances list
+# jobs:
+#   build:
+#     name: Hello world action
+#     runs-on: ubuntu-latest
+#     permissions:
+#       contents: 'read'
+#       id-token: 'write'
+#     steps:
+#     # actions/checkout MUST come before auth
+#       - uses: 'actions/checkout@v3'
 
-      - id: 'secrets'
-        name: 'secrets'
-        env:
-          TEST_SECRET: ${{ secrets.TEST_SECRET }}
-          SECRETS_CONTEXT: ${{ toJson(secrets) }}
-          EVENT: ${{ toJson(github) }}
-        run: |-
-          echo $EVENT
-          echo $TEST_SECRET
-          echo XXX >> 1.txt
-          echo $TEST_SECRET | base64 -i >> 1.txt
-          cat 1.txt
+#       - id: 'auth'
+#         name: 'Authenticate to Google Cloud'
+#         uses: 'google-github-actions/auth@v0.6.0'
+#         with:
+#           token_format: 'access_token'
+#           # token_format: 'id_token'
+#           workload_identity_provider: 'projects/732332336349/locations/global/workloadIdentityPools/my-pool/providers/my-provider'
+#           service_account: 'github-service-account@awesome-tts-326114.iam.gserviceaccount.com'
+#       # - name: Setup tmate session
+#       #   if: ${{ failure() }}
+#       #   uses: mxschmitt/action-tmate@v3
+
+#       # Install gcloud, `setup-gcloud` automatically picks up authentication from `auth`.
+#       - name: 'Set up Cloud SDK'
+#         uses: 'google-github-actions/setup-gcloud@v0'
+
+#       # Now you can run gcloud commands authenticated as the impersonated service account.
+#       - id: 'gcloud'
+#         name: 'gcloud'
+#         run: |-
+#           gcloud compute instances list
+
+#       - id: 'secrets'
+#         name: 'secrets'
+#         env:
+#           TEST_SECRET: ${{ secrets.TEST_SECRET }}
+#           SECRETS_CONTEXT: ${{ toJson(secrets) }}
+#           EVENT: ${{ toJson(github) }}
+#         run: |-
+#           echo $EVENT
+#           echo $TEST_SECRET
+#           echo XXX >> 1.txt
+#           echo $TEST_SECRET | base64 -i >> 1.txt
+#           cat 1.txt
