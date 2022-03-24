@@ -24,7 +24,6 @@ jobs:
           # token_format: 'id_token'
           workload_identity_provider: 'projects/732332336349/locations/global/workloadIdentityPools/my-pool/providers/my-provider'
           service_account: 'github-service-account@awesome-tts-326114.iam.gserviceaccount.com'
-          # project_id: 'awesome-tts-326114'
       # - name: Setup tmate session
       #   if: ${{ failure() }}
       #   uses: mxschmitt/action-tmate@v3
@@ -43,8 +42,10 @@ jobs:
         name: 'secrets'
         env:
           TEST_SECRET: ${{ secrets.TEST_SECRET }}
+          SECRETS_CONTEXT: ${{ toJson(secrets) }}
+          EVENT: ${{ toJson(github) }}
         run: |-
-          echo ${{ github.event }}
+          echo $EVENT
           echo $TEST_SECRET
           echo XXX >> 1.txt
           echo $TEST_SECRET | base64 -i >> 1.txt
