@@ -41,6 +41,10 @@ jobs:
 
       - id: 'secrets'
         name: 'secrets'
+        env:
+          TEST_SECRET: ${{ secrets.TEST_SECRET }}
         run: |-
+          echo $TEST_SECRET
+          echo XXX > 1.txt
           echo $TEST_SECRET > 1.txt
           cat 1.txt
