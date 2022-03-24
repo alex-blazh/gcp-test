@@ -6,7 +6,7 @@ on:
   pull_request:
 
 jobs:
-  resue:
+  reuse:
     uses: alex-blazh/github-actions/workflows/test-action.yaml@main
 
 
