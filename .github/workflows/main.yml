@@ -9,6 +9,16 @@ jobs:
   reuse:
     uses: alex-blazh/github-actions/.github/workflows/test-action.yaml@main
 
+  work_with_env:
+    environment:
+      name: dev
+      url: https://google.com
+    runs-on: ubuntu-latest
+    needs: [ reuse ]
+    steps:
+      - name: Dev env magic
+        run: echo Hello World
+
 
   # compose_job:
   #   runs-on: ubuntu-latest
